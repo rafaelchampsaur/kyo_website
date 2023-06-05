@@ -15,6 +15,9 @@
     <h1>Welcome to my site!</h1>
     <p>This is some sample content.</p>
   </div>
+  <div class="logo">
+    <img src="logo.jpg" type="logo">
+  </div>
   <div class="Header-menu">
     <ul>
       <li><a href="#">How We Teach</a></li>
@@ -49,6 +52,20 @@
   </div>
 
   </footer>
+  <script>
+        const menuItems = document.querySelectorAll('.Header-menu li');
+
+        menuItems.forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.classList.add('active');
+            });
+
+            item.addEventListener('mouseout', () => {
+                item.classList.remove('active');
+            });
+        });
+    </script>
+
 </body>
 </html>
 

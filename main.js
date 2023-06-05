@@ -41,7 +41,16 @@ const menuItems = [
     document.body.appendChild(videoBackground);
   }
   
-  createMenu();
+  const menuItems = document.querySelectorAll('.menu-item');
 
+  menuItems.forEach(item => {
+      item.addEventListener('mouseover', () => {
+          item.classList.add('active');
+      });
+
+      item.addEventListener('mouseout', () => {
+          item.classList.remove('active');
+      });
+  });
   
   

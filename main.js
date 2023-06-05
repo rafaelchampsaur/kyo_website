@@ -42,6 +42,6 @@ const menuItems = [
   }
   
   createMenu();
-  createVideoBackground();
+
   
   

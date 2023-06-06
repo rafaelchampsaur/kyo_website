@@ -254,3 +254,56 @@ footer {
 .footer-visible .footer-social a {
   color: black;
 }
+.slick-prev {
+  opacity: 30%;
+  position: absolute;
+  font-size: 40px;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 60px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+.slick-next {
+  opacity: 30%;
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  right: 85%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 60px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+  /* CSS for the image */
+  .blank-space {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  /* CSS for the moving image */
+  #moving-image {
+    position: absolute;
+    top: 95;
+    left: 5;
+    width: 20%;
+    height: 20%;
+    background-image: url('image1.jpg');
+    background-size: cover;
+    transition: transform 0.3s ease-out;
+    transform: translate(0, 0);
+    z-index: 90;
+  }

@@ -3,6 +3,10 @@
 <head>
   <title>Your Website</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 </head>
 <body>
 <button id="toggleButton">Toggle Footer</button>
@@ -30,14 +34,25 @@
   </div>
   </nav>
 </header>
-  <div class="latin-text">
-  <p id="animated-text">This text will be animated Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel felis nec nulla gravida iaculis. Donec pellentesque, dui in ultricies porttitor, elit neque condimentum quam, et euismod nulla mauris a enim. Nam id rutrum nisi, eu lobortis neque. Maecenas finibus felis vel sem mattis, vel ultricies lacus eleifend. Suspendisse potenti. Sed ut iaculis ex. Fusce in est a dui elementum consectetur. Quisque non vestibulum odio, sed efficitur nisi. Fusce lobortis, turpis vitae tincidunt lobortis, nisi ex hendrerit diam, eget viverra justo felis ut nunc.</p>
-  <p>Nullam auctor, elit id tincidunt rhoncus, mi ex sollicitudin sem, sed tincidunt enim risus at ligula. Vestibulum tempor lacinia orci, nec facilisis nulla cursus eu. Nam blandit lectus id libero eleifend vestibulum. Nunc consequat purus a congue tincidunt. Aliquam nec lobortis metus. Vivamus ac neque vitae turpis tempor vestibulum. Nulla facilisi.</p>
-  </div>
+    <div class="latin-text">
+    <p id="animated-text">This text will be animated Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel felis nec nulla gravida iaculis. Donec pellentesque, dui in ultricies porttitor, elit neque condimentum quam, et euismod nulla mauris a enim. Nam id rutrum nisi, eu lobortis neque. Maecenas finibus felis vel sem mattis, vel ultricies lacus eleifend. Suspendisse potenti. Sed ut iaculis ex. Fusce in est a dui elementum consectetur. Quisque non vestibulum odio, sed efficitur nisi. Fusce lobortis, turpis vitae tincidunt lobortis, nisi ex hendrerit diam, eget viverra justo felis ut nunc.</p>
+    <p>Nullam auctor, elit id tincidunt rhoncus, mi ex sollicitudin sem, sed tincidunt enim risus at ligula. Vestibulum tempor lacinia orci, nec facilisis nulla cursus eu. Nam blandit lectus id libero eleifend vestibulum. Nunc consequat purus a congue tincidunt. Aliquam nec lobortis metus. Vivamus ac neque vitae turpis tempor vestibulum. Nulla facilisi.</p>
+    </div>
+  <div class ="blank-space">
+   
+    <div id="moving-image"></div>
+    </div>
   <div class="article">
   <h2>Article Title</h2>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer commodo, nunc ut hendrerit consectetur, mauris ligula facilisis arcu, at vulputate felis libero ac dui. Morbi vel augue consequat, hendrerit lectus eu, consequat tellus.</p>
   </div>
+  <div id="image-carousel">
+  </div>
+  <p id="espacio estetico">    
+
+
+  </p>
+</div>
   <footer>
     <div class="footer-menu">
       <ul>
@@ -52,6 +67,9 @@
     <a href="#"><img src="facebook.png" alt="Facebook"></a>
     <a href="#"><img src="reels.png" alt="Reels"></a>
   </div>
+
+
+
 
   </footer>
   <script>
@@ -120,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var textToType = typedText.innerHTML.trim(); // Get the innerHTML of the paragraph
       typedText.innerHTML = ''; // Clear the existing content
 
-      var typingSpeed = 70; // Adjust the typing speed (in milliseconds)
+      var typingSpeed = 60; // Adjust the typing speed (in milliseconds)
       var currentIndex = 0;
 
       function typeNextCharacter() {
@@ -138,6 +156,103 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 500);
     });
   </script>
+  <script>
+  // JavaScript code
+  
+  $(document).ready( function() {
+    // Retrieve the carousel container element
+    var carouselContainer = document.getElementById('image-carousel');
+
+    // Define an array of image URLs
+    var imageUrls = [
+      'image1.jpg',
+      'image2.jpg',
+      'image3.jpg'
+    ];
+
+    // Create the carousel HTML structure dynamically
+    var carouselHtml = '';
+    for (var i = 0; i < imageUrls.length; i++) {
+    carouselHtml += '<img src="' + imageUrls[i] + '" alt="image' + (i+1) + '">';
+    }
+
+ 
+
+
+    // Set the carousel HTML content
+    carouselContainer.innerHTML = carouselHtml;
+
+    // Add carousel functionality using a library or custom JavaScript code
+    // Example using Slick carousel library:
+    $(carouselContainer).slick({
+    prevArrow: '<button type="button" class="slick-prev">   > </button>',
+      nextArrow: '<button type="button" class="slick-next">  < </button>'
+   });
+  });
+</script>
+<script>
+<script>
+  // Retrieve the moving image element
+  var movingImage = document.getElementById('moving-image');
+
+  // Store the initial mouse position
+  var initialX = null;
+  var initialY = null;
+
+  // Store the initial image position
+  var initialImageX = 0;
+  var initialImageY = 0;
+
+  // Get the container size
+  var containerWidth = document.querySelector('.container').offsetWidth;
+  var containerHeight = document.querySelector('.container').offsetHeight;
+
+  // Mouse down event listener
+  movingImage.addEventListener('mousedown', function(event) {
+    // Get the initial mouse position
+    initialX = event.clientX;
+    initialY = event.clientY;
+
+    // Store the initial image position
+    initialImageX = movingImage.offsetLeft;
+    initialImageY = movingImage.offsetTop;
+
+    // Add mouse move event listener
+    document.addEventListener('mousemove', moveImage);
+  });
+
+  // Mouse up event listener
+  document.addEventListener('mouseup', function() {
+    // Reset the initial mouse position
+    initialX = null;
+    initialY = null;
+
+    // Remove the mouse move event listener
+    document.removeEventListener('mousemove', moveImage);
+  });
+
+  // Mouse move event listener
+  function moveImage(event) {
+    if (initialX === null || initialY === null) {
+      return;
+    }
+
+    // Calculate the movement distance
+    var deltaX = event.clientX - initialX;
+    var deltaY = event.clientY - initialY;
+
+    // Calculate the new image position
+    var newImageX = initialImageX + deltaX;
+    var newImageY = initialImageY + deltaY;
+
+    // Keep the image within the container bounds
+    newImageX = Math.max(0, Math.min(newImageX, containerWidth - movingImage.offsetWidth));
+    newImageY = Math.max(0, Math.min(newImageY, containerHeight - movingImage.offsetHeight));
+
+    // Update the image position using CSS transforms
+    movingImage.style.transform = 'translate(' + newImageX + 'px, ' + newImageY + 'px)';
+  }
+</script>
 
 
 </body>

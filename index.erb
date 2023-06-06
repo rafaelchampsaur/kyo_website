@@ -5,7 +5,11 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  
+<button id="toggleButton">Toggle Footer</button>
+<div class="logo">
+<img src="logo.jpg" type="logo">
+</div>
+<header>
   <nav class="video-container">
   <video autoplay loop muted>
     <source src="video.mp4" type="video/mp4">
@@ -15,9 +19,7 @@
     <h1>Welcome to my site!</h1>
     <p>This is some sample content.</p>
   </div>
-  <div class="logo">
-    <img src="logo.jpg" type="logo">
-  </div>
+
   <div class="Header-menu">
     <ul>
       <li><a href="#">How We Teach</a></li>
@@ -27,9 +29,9 @@
     </ul>
   </div>
   </nav>
+</header>
   <div class="latin-text">
-  <h1>Lorem ipsum dolor sit amet</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel felis nec nulla gravida iaculis. Donec pellentesque, dui in ultricies porttitor, elit neque condimentum quam, et euismod nulla mauris a enim. Nam id rutrum nisi, eu lobortis neque. Maecenas finibus felis vel sem mattis, vel ultricies lacus eleifend. Suspendisse potenti. Sed ut iaculis ex. Fusce in est a dui elementum consectetur. Quisque non vestibulum odio, sed efficitur nisi. Fusce lobortis, turpis vitae tincidunt lobortis, nisi ex hendrerit diam, eget viverra justo felis ut nunc.</p>
+  <p id="animated-text">This text will be animated Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel felis nec nulla gravida iaculis. Donec pellentesque, dui in ultricies porttitor, elit neque condimentum quam, et euismod nulla mauris a enim. Nam id rutrum nisi, eu lobortis neque. Maecenas finibus felis vel sem mattis, vel ultricies lacus eleifend. Suspendisse potenti. Sed ut iaculis ex. Fusce in est a dui elementum consectetur. Quisque non vestibulum odio, sed efficitur nisi. Fusce lobortis, turpis vitae tincidunt lobortis, nisi ex hendrerit diam, eget viverra justo felis ut nunc.</p>
   <p>Nullam auctor, elit id tincidunt rhoncus, mi ex sollicitudin sem, sed tincidunt enim risus at ligula. Vestibulum tempor lacinia orci, nec facilisis nulla cursus eu. Nam blandit lectus id libero eleifend vestibulum. Nunc consequat purus a congue tincidunt. Aliquam nec lobortis metus. Vivamus ac neque vitae turpis tempor vestibulum. Nulla facilisi.</p>
   </div>
   <div class="article">
@@ -63,11 +65,90 @@
             item.addEventListener('mouseout', () => {
                 item.classList.remove('active');
             });
-        });
-    </script>
+      })
+</script>
+<script>
+// Toggle background color and text color of the footer
+document.addEventListener('DOMContentLoaded', function() {
+  var body = document.body;
+  var footer = document.querySelector('footer');
+  var footerLinks = document.querySelectorAll('.footer-menu a, .footer-social a');
+  var visibles = document.querySelector('.logo');
+  var toggleButton = document.getElementById('toggleButton');
+
+  toggleButton.addEventListener('click', function() {
+        body.classList.toggle('footer-visible');
+
+  if (body.classList.contains('footer-visible')) {
+    footer.style.backgroundColor = 'white';
+    footer.style.color = 'black';
+    footerLinks.forEach(function(link) {
+      link.style.color = 'black';
+    });
+    visibles.style.display = 'block';
+    visibles.style.position = 'fixed';
+    visibles.style.top = '20px';
+    visibles.style.right= '10px';
+    visibles.style.zIndex= '999';
+    
+   }
+  
+  else {
+    footer.style.backgroundColor = 'black';
+    footer.style.color = 'white';
+    footerLinks.forEach(function(link) {
+      link.style.color = 'white';
+    });
+    visibles.style.display = 'block';
+    visibles.style.position = 'absolute';
+   
+    }
+  });
+});
+       
+ 
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Toggle code here
+  });
+</script>
+<script>
+    // JavaScript code for animating typed text
+    document.addEventListener('DOMContentLoaded', function() {
+      var typedText = document.getElementById('animated-text');
+      var textToType = typedText.innerHTML.trim(); // Get the innerHTML of the paragraph
+      typedText.innerHTML = ''; // Clear the existing content
+
+      var typingSpeed = 70; // Adjust the typing speed (in milliseconds)
+      var currentIndex = 0;
+
+      function typeNextCharacter() {
+        if (currentIndex < textToType.length) {
+          typedText.innerHTML += textToType[currentIndex];
+          currentIndex++;
+          setTimeout(typeNextCharacter, typingSpeed);
+        }
+      }
+
+      typedText.parentElement.style.visibility = 'visible'; // Show the text container
+      setTimeout(function() {
+        typedText.parentElement.style.opacity = '1'; // Set opacity to 1 after a slight delay
+        typeNextCharacter(); // Start typing animation
+      }, 500);
+    });
+  </script>
+
 
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 

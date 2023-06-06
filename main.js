@@ -52,5 +52,50 @@ const menuItems = [
           item.classList.remove('active');
       });
   });
+  document.getElementById('toggleButton').addEventListener('click', function() {
+    var body = document.body;
+    var footer = document.getElementById('footer');
+  
+    // Toggle footer visibility class on the body
+    body.classList.toggle('footer-visible');
+  
+    // Toggle background color and text color of the footer
+    document.addEventListener('DOMContentLoaded', function() {
+      var body = document.body;
+      var footer = document.querySelector('footer');
+      var footerLinks = document.querySelectorAll('.footer-menu a');
+      var footerlinks= document.querySelectorAll('.footer-social a');
+    
+      if (body.classList.contains('footer-visible')) {
+        footer.style.backgroundColor = 'white';
+        footer.style.color = 'black';
+        footerLinks.forEach(function(link) {
+          link.style.color = 'black';
+        });
+      } else {
+        footer.style.backgroundColor = 'black';
+        footer.style.color = 'white';
+        footerLinks.forEach(function(link) {
+          link.style.color = 'white';
+        });
+        var elementsToHide = document.querySelectorAll('body > :not(footer)');
+        elementsToHide.forEach(function(element) {
+          element.style.display = 'none'; // or use element.disabled = true; to disable form elements
+        });
+      } else {
+        // Set styles for the footer and footer links
+        footer.style.backgroundColor = 'black';
+        footer.style.color = 'white';
+        footerLinks.forEach(function(link) {
+          link.style.color = 'white';
+        });
+        footerSocialLinks.forEach(function(link) {
+          link.style.color = 'white';
+        });
+      }
+    });
+    
+  
+  
   
   

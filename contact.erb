@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Website</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+</head>
+<body>
+<button id="toggleButton"></button>
+<div class="logo"><a href="/"><img src="logo.jpg" type="logo"></a>
+
+</div>
+<header>
+  <nav class="video-container">
+  <video autoplay loop muted>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+  <div class="content">
+    <!-- Your content goes here -->
+    <h1>Welcome to my site!</h1>
+    <p>This is some sample content.</p>
+  </div>
+
+  <div class="Header-menu">
+    <ul>
+      <li><a href="#">How We Teach</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Prices</a></li>
+      <li><a href="#">Availability</a></li>
+    </ul>
+  </div>
+  </nav>
+</header>
+  
+  <div id="image-carousel">
+  </div>
+  <p id="espacio estetico">    
+
+
+  </p>
+</div>
+  <footer>
+    <div class="footer-menu">
+      <ul>
+        <li><a href="#">How We Teach</a></li>
+        <li><a href='/contact'>Contact Us</a></li>
+        <li><a href="#">Prices</a></li>
+        <li><a href="#">Availability</a></li>
+      </ul>
+    </div>
+  <div class="footer-social">
+    <a href="#"><img src="instagram.png" alt="Instagram"></a>
+    <a href="#"><img src="facebook.png" alt="Facebook"></a>
+    <a href="#"><img src="reels.png" alt="Reels"></a>
+  </div>
+
+
+
+
+  </footer>
+  <script>
+        const menuItems = document.querySelectorAll('.Header-menu li');
+
+        menuItems.forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.classList.add('active');
+            });
+
+            item.addEventListener('mouseout', () => {
+                item.classList.remove('active');
+            });
+      })
+</script>
+<script>
+// Toggle background color and text color of the footer
+document.addEventListener('DOMContentLoaded', function() {
+  var body = document.body;
+  var footer = document.querySelector('footer');
+  var footerLinks = document.querySelectorAll('.footer-menu a, .footer-social a');
+  var visibles = document.querySelector('.logo');
+  var toggleButton = document.getElementById('toggleButton');
+
+  toggleButton.addEventListener('click', function() {
+        body.classList.toggle('footer-visible');
+
+  if (body.classList.contains('footer-visible')) {
+    footer.style.backgroundColor = 'white';
+    footer.style.color = 'black';
+    footerLinks.forEach(function(link) {
+      link.style.color = 'black';
+    });
+    visibles.style.display = 'block';
+    visibles.style.position = 'fixed';
+    visibles.style.top = '20px';
+    visibles.style.right= '10px';
+    visibles.style.zIndex= '999';
+    
+   }
+  
+  else {
+    footer.style.backgroundColor = 'black';
+    footer.style.color = 'white';
+    footerLinks.forEach(function(link) {
+      link.style.color = 'white';
+    });
+    visibles.style.display = 'block';
+    visibles.style.position = 'absolute';
+   
+    }
+  });
+});
+       
+ 
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Toggle code here
+  });
+</script>
+<script>
+    // JavaScript code for animating typed text
+    document.addEventListener('DOMContentLoaded', function() {
+      var typedText = document.getElementById('animated-text');
+      var textToType = typedText.innerHTML.trim(); // Get the innerHTML of the paragraph
+      typedText.innerHTML = ''; // Clear the existing content
+
+      var typingSpeed = 60; // Adjust the typing speed (in milliseconds)
+      var currentIndex = 0;
+
+      function typeNextCharacter() {
+        if (currentIndex < textToType.length) {
+          typedText.innerHTML += textToType[currentIndex];
+          currentIndex++;
+          setTimeout(typeNextCharacter, typingSpeed);
+        }
+      }
+
+      typedText.parentElement.style.visibility = 'visible'; // Show the text container
+      setTimeout(function() {
+        typedText.parentElement.style.opacity = '1'; // Set opacity to 1 after a slight delay
+        typeNextCharacter(); // Start typing animation
+      }, 500);
+    });
+  </script>
+  <script>
+  // JavaScript code
+  
+  $(document).ready( function() {
+    // Retrieve the carousel container element
+    var carouselContainer = document.getElementById('image-carousel');
+
+    // Define an array of image URLs
+    var imageUrls = [
+      'image1.jpg',
+      'image2.jpg',
+      'image3.jpg'
+    ];
+
+    // Create the carousel HTML structure dynamically
+    var carouselHtml = '';
+    for (var i = 0; i < imageUrls.length; i++) {
+    carouselHtml += '<img src="' + imageUrls[i] + '" alt="image' + (i+1) + '">';
+    }
+
+ 
+
+
+    // Set the carousel HTML content
+    carouselContainer.innerHTML = carouselHtml;
+
+    // Add carousel functionality using a library or custom JavaScript code
+    // Example using Slick carousel library:
+    $(carouselContainer).slick({
+    prevArrow: '<button type="button" class="slick-prev">   > </button>',
+      nextArrow: '<button type="button" class="slick-next">  < </button>'
+   });
+  });
+</script>
+
+<script>
+// Retrieve the moving image element
+var movingImage = document.getElementById('moving-image');
+
+// Get the container size
+var containerHeight = document.querySelector('.container').offsetHeight;
+
+// Calculate the maximum translation distance
+var maxTranslateY = containerHeight - movingImage.offsetHeight;
+
+// Update the image position when the user scrolls
+function updateImagePosition() {
+  // Check if the .container is in the viewport
+  var containerRect = document.querySelector('.container').getBoundingClientRect();
+  var isInViewport = containerRect.top < window.innerHeight && containerRect.bottom > 0;
+
+  if (isInViewport) {
+    // Calculate the scroll percentage within the .container
+    var scrollPercentage =  ((window.scrollY - containerRect.top) / containerRect.height);
+    scrollPercentage *= 0.5 // Multiply by a smaller factor for slower movement
+
+    // Calculate the new image position
+    var newTranslateY = scrollPercentage * maxTranslateY;
+
+    // Update the image position using CSS transforms
+    movingImage.style.transform = 'translateY(-' + newTranslateY + 'px)';
+  }
+}
+
+// Update the image position when the user scrolls
+window.addEventListener('scroll', updateImagePosition);
+</script>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

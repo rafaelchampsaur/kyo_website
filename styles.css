@@ -224,9 +224,17 @@ footer {
   background-color: white; /* Adjust the underline color */
 }
 #toggleButton {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  border: none;
+  height: 40px;
+  width: 40px;
+  background-image: url("menu.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+  cursor: pointer;
   z-index: 9999;
 }
 

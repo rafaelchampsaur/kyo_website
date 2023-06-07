@@ -38,9 +38,9 @@
     <p id="animated-text">This text will be animated Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel felis nec nulla gravida iaculis. Donec pellentesque, dui in ultricies porttitor, elit neque condimentum quam, et euismod nulla mauris a enim. Nam id rutrum nisi, eu lobortis neque. Maecenas finibus felis vel sem mattis, vel ultricies lacus eleifend. Suspendisse potenti. Sed ut iaculis ex. Fusce in est a dui elementum consectetur. Quisque non vestibulum odio, sed efficitur nisi. Fusce lobortis, turpis vitae tincidunt lobortis, nisi ex hendrerit diam, eget viverra justo felis ut nunc.</p>
     <p>Nullam auctor, elit id tincidunt rhoncus, mi ex sollicitudin sem, sed tincidunt enim risus at ligula. Vestibulum tempor lacinia orci, nec facilisis nulla cursus eu. Nam blandit lectus id libero eleifend vestibulum. Nunc consequat purus a congue tincidunt. Aliquam nec lobortis metus. Vivamus ac neque vitae turpis tempor vestibulum. Nulla facilisi.</p>
     </div>
-  <div class ="blank-space">
-   
-    <div id="moving-image"></div>
+    <div class ="container">
+      <div id="static-image" src="image1.jpg"></div>
+      <div id="moving-image" src="image1.jpg"></div>
     </div>
   <div class="article">
   <h2>Article Title</h2>
@@ -190,69 +190,42 @@ document.addEventListener('DOMContentLoaded', function() {
    });
   });
 </script>
+
 <script>
-<script>
-  // Retrieve the moving image element
-  var movingImage = document.getElementById('moving-image');
+// Retrieve the moving image element
+var movingImage = document.getElementById('moving-image');
 
-  // Store the initial mouse position
-  var initialX = null;
-  var initialY = null;
+// Get the container size
+var containerHeight = document.querySelector('.container').offsetHeight;
 
-  // Store the initial image position
-  var initialImageX = 0;
-  var initialImageY = 0;
+// Calculate the maximum translation distance
+var maxTranslateY = containerHeight - movingImage.offsetHeight;
 
-  // Get the container size
-  var containerWidth = document.querySelector('.container').offsetWidth;
-  var containerHeight = document.querySelector('.container').offsetHeight;
+// Update the image position when the user scrolls
+function updateImagePosition() {
+  // Check if the .container is in the viewport
+  var containerRect = document.querySelector('.container').getBoundingClientRect();
+  var isInViewport = containerRect.top < window.innerHeight && containerRect.bottom > 0;
 
-  // Mouse down event listener
-  movingImage.addEventListener('mousedown', function(event) {
-    // Get the initial mouse position
-    initialX = event.clientX;
-    initialY = event.clientY;
-
-    // Store the initial image position
-    initialImageX = movingImage.offsetLeft;
-    initialImageY = movingImage.offsetTop;
-
-    // Add mouse move event listener
-    document.addEventListener('mousemove', moveImage);
-  });
-
-  // Mouse up event listener
-  document.addEventListener('mouseup', function() {
-    // Reset the initial mouse position
-    initialX = null;
-    initialY = null;
-
-    // Remove the mouse move event listener
-    document.removeEventListener('mousemove', moveImage);
-  });
-
-  // Mouse move event listener
-  function moveImage(event) {
-    if (initialX === null || initialY === null) {
-      return;
-    }
-
-    // Calculate the movement distance
-    var deltaX = event.clientX - initialX;
-    var deltaY = event.clientY - initialY;
+  if (isInViewport) {
+    // Calculate the scroll percentage within the .container
+    var scrollPercentage =  ((window.scrollY - containerRect.top) / containerRect.height);
+    scrollPercentage *= 0.5 // Multiply by a smaller factor for slower movement
 
     // Calculate the new image position
-    var newImageX = initialImageX + deltaX;
-    var newImageY = initialImageY + deltaY;
-
-    // Keep the image within the container bounds
-    newImageX = Math.max(0, Math.min(newImageX, containerWidth - movingImage.offsetWidth));
-    newImageY = Math.max(0, Math.min(newImageY, containerHeight - movingImage.offsetHeight));
+    var newTranslateY = scrollPercentage * maxTranslateY;
 
     // Update the image position using CSS transforms
-    movingImage.style.transform = 'translate(' + newImageX + 'px, ' + newImageY + 'px)';
+    movingImage.style.transform = 'translateY(-' + newTranslateY + 'px)';
   }
+}
+
+// Update the image position when the user scrolls
+window.addEventListener('scroll', updateImagePosition);
 </script>
+
+
+
 
 
 </body>
